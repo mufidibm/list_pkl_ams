@@ -25,6 +25,7 @@ $schools = getSchools($pdo);
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
+    
 }
 
 .form-group label {
@@ -129,7 +130,7 @@ textarea {
 
         <div class="form-group">
             <button type="submit" class="btn-primary">Simpan</button>
-            <a href="index.php" class="btn-danger" style="text-decoration:none; padding:8px 14px;">Batal</a>
+            <a href="index.php" class="btn-danger" style="text-decoration:none; padding:8px 14px; text-align:center">Batal</a>
         </div>
     </form>
 </div>
