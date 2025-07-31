@@ -114,6 +114,11 @@ textarea {
         </div>
 
         <div class="form-group">
+            <label>Status:</label>
+            <input type="text" name="status" value="<?= htmlspecialchars($student['status'] ?? '') ?>">
+        </div>
+
+        <div class="form-group">
             <label>Keterangan:</label>
             <textarea name="keterangan"><?= htmlspecialchars($student['keterangan'] ?? '') ?></textarea>
         </div>

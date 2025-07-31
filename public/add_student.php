@@ -104,6 +104,11 @@ textarea {
         </div>
 
         <div class="form-group">
+            <label>Status:</label>
+            <input type="text" name="status">
+        </div>
+
+        <div class="form-group">
             <label>Keterangan:</label>
             <textarea name="keterangan"></textarea>
         </div>

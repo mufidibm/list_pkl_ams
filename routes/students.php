@@ -73,8 +73,8 @@ function getStudent($pdo, $id) {
 }
 
 function createStudent($pdo, $data) {
-    $sql = "INSERT INTO siswa (nama_lengkap, jenis_kelamin, nama_panggilan, tempat_lahir, tanggal_lahir, alamat, periode_mulai, periode_selesai, no_telepon, email, keterangan, batch_id, asal_sekolah_id) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO siswa (nama_lengkap, jenis_kelamin, nama_panggilan, tempat_lahir, tanggal_lahir, alamat, periode_mulai, periode_selesai, no_telepon, email, status, keterangan, batch_id, asal_sekolah_id) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $pdo->prepare($sql);
     return $stmt->execute([
         $data['nama_lengkap'], 
@@ -87,6 +87,7 @@ function createStudent($pdo, $data) {
         $data['periode_selesai'] ?? null,
         $data['no_telepon'] ?? null,
         $data['email'] ?? null,
+        $data['status'] ?? null,
         $data['keterangan'] ?? null,
         $data['batch_id'],
         $data['asal_sekolah_id']
@@ -94,7 +95,7 @@ function createStudent($pdo, $data) {
 }
 
 function updateStudent($pdo, $id, $data) {
-    $sql = "UPDATE siswa SET nama_lengkap = ?, jenis_kelamin = ?, nama_panggilan = ?, tempat_lahir = ?, tanggal_lahir = ?, alamat = ?, periode_mulai = ?, periode_selesai = ?, no_telepon = ?, email = ?, keterangan = ?, batch_id = ?, asal_sekolah_id = ? WHERE id = ?";
+    $sql = "UPDATE siswa SET nama_lengkap = ?, jenis_kelamin = ?, nama_panggilan = ?, tempat_lahir = ?, tanggal_lahir = ?, alamat = ?, periode_mulai = ?, periode_selesai = ?, no_telepon = ?, email = ?, status = ?, keterangan = ?, batch_id = ?, asal_sekolah_id = ? WHERE id = ?";
     $stmt = $pdo->prepare($sql);
     return $stmt->execute([
         $data['nama_lengkap'], 
@@ -107,6 +108,7 @@ function updateStudent($pdo, $id, $data) {
         $data['periode_selesai'] ?? null,
         $data['no_telepon'] ?? null,
         $data['email'] ?? null,
+        $data['status'] ?? null,
         $data['keterangan'] ?? null,
         $data['batch_id'],
         $data['asal_sekolah_id'],

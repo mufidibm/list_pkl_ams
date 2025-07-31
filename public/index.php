@@ -63,6 +63,7 @@ function tanggalIndo($tanggal, $withDay = true) {
             margin: 0;
             padding: 20px;
             color: #333;
+            overflow-x: scroll;
         }
 
         .container {
@@ -125,7 +126,7 @@ function tanggalIndo($tanggal, $withDay = true) {
         }
 
         table {
-            width: 100%;
+            width: 130%;
             border-collapse: collapse;
             overflow-x: auto;
             display: block;
@@ -137,7 +138,6 @@ function tanggalIndo($tanggal, $withDay = true) {
             text-align: left;
             vertical-align: top;
             word-wrap: break-word;
-            max-width: 200px;
         }
 
         table th {
@@ -226,7 +226,6 @@ function tanggalIndo($tanggal, $withDay = true) {
     </style>
 </head>
 <body>
-    <div class="container">
         <h2>Manajemen Data Siswa PKL</h2>
 
         <!-- Search Form -->
@@ -278,16 +277,17 @@ function tanggalIndo($tanggal, $withDay = true) {
         <!-- Students Table -->
         <table>
             <tr>
+                <th>Asal Sekolah</th>
                 <th>Nama Lengkap</th>
                 <th>Nama Panggilan</th>
                 <th>Jenis Kelamin</th>
                 <th>Tempat, Tgl Lahir</th>
-                <th>Alamat</th>
+                <th style="width: 10%;">Alamat</th>
                 <th>Periode</th>
-                <th>No Telepon</th>
-                <th>Email</th>
+                <th style="width: 10%">No Telepon</th>
+                <th style="width: 13%;">Email</th>
+                <th>Status</th>
                 <th>Keterangan</th>
-                <th>Asal Sekolah</th>
                 <th>Batch</th>
                 <th>Aksi</th>
             </tr>
@@ -295,7 +295,8 @@ function tanggalIndo($tanggal, $withDay = true) {
                 <tr><td colspan="12">Tidak ada data ditemukan.</td></tr>
             <?php else: ?>
                 <?php foreach ($students as $student): ?>
-                <tr>
+                    <tr>
+                    <td><?= htmlspecialchars($student['nama_sekolah']) ?></td>
                     <td><?= htmlspecialchars($student['nama_lengkap']) ?></td>
                     <td><?= htmlspecialchars($student['nama_panggilan'] ?? '-') ?></td>
                     <td><?= htmlspecialchars($student['jenis_kelamin'] ?? '-') ?></td>
@@ -304,14 +305,14 @@ function tanggalIndo($tanggal, $withDay = true) {
                     <td><?= htmlspecialchars(tanggalIndo($student['periode_mulai']) . ' s/d ' . tanggalIndo($student['periode_selesai'])) ?></td>
                     <td><?= htmlspecialchars($student['no_telepon'] ?? '-') ?></td>
                     <td><?= htmlspecialchars($student['email'] ?? '-') ?></td>
+                    <td><?= htmlspecialchars($student['status'] ?? '-') ?></td>
                     <td><?= htmlspecialchars($student['keterangan'] ?? '-') ?></td>
-                    <td><?= htmlspecialchars($student['nama_sekolah']) ?></td>
                     <td><?= htmlspecialchars($student['nama_batch']) ?></td>
                     <td>
                         <a href="edit_student.php?id=<?= $student['id'] ?>"><button class="btn-primary">Edit</button></a>
                         <form method="POST" action="../routes/students.php" style="display:inline;">
                             <input type="hidden" name="id" value="<?= $student['id'] ?>">
-                               <button type="submit" name="delete_student" class="btn-danger" onclick="return confirmDelete('Yakin ingin menghapus siswa ini?')">Hapus</button>
+                               <button type="submit" name="delete_student" class="btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus?')">Hapus</button>
                         </form>
                     </td>
                 </tr>
