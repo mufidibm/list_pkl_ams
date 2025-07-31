@@ -309,9 +309,9 @@ function tanggalIndo($tanggal, $withDay = true) {
                     <td><?= htmlspecialchars($student['nama_batch']) ?></td>
                     <td>
                         <a href="edit_student.php?id=<?= $student['id'] ?>"><button class="btn-primary">Edit</button></a>
-                        <form method="POST" action="routes/students.php" style="display:inline;">
+                        <form method="POST" action="../routes/students.php" style="display:inline;">
                             <input type="hidden" name="id" value="<?= $student['id'] ?>">
-                            <button type="submit" name="delete_student" class="btn-danger" onclick="return confirm('Yakin ingin menghapus siswa ini?')">Hapus</button>
+                               <button type="submit" name="delete_student" class="btn-danger" onclick="return confirmDelete('Yakin ingin menghapus siswa ini?')">Hapus</button>
                         </form>
                     </td>
                 </tr>

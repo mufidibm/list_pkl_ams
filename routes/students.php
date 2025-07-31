@@ -1,4 +1,7 @@
 <?php
+require_once '../config/database.php';
+
+
 function getStudents($pdo, $search = '', $batch_id = null, $page = 1, $perPage = 10) {
     $offset = ($page - 1) * $perPage;
     $search = '%' . $search . '%';
@@ -114,4 +117,17 @@ function updateStudent($pdo, $id, $data) {
 function deleteStudent($pdo, $id) {
     $stmt = $pdo->prepare("DELETE FROM siswa WHERE id = ?");
     return $stmt->execute([$id]);
+
+    
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['delete_student'])) {
+        $id = $_POST['id'] ?? null;
+        if ($id) {
+            deleteStudent($pdo, $id);
+            header('Location: ../public/index.php');
+            exit;
+        }
+    }
 }
